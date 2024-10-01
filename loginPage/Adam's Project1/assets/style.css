@@ -14,6 +14,7 @@
 html {
     text-align: center;
     background-color: var(--light);
+    box-shadow: 0 0 20px var(--primary) inset;
 }
 
 ul li {
@@ -24,9 +25,10 @@ ul li {
 }
 
 header {
-    margin: 6% 0px 6% 0px;
-    
-
+    margin: 0 auto;
+    /* border-bottom: 2px solid var(--primary); */
+    padding: 25px;
+   
     }
 
 footer {
@@ -59,6 +61,11 @@ h1, h2 {
 
 }
 
+button {
+    background-color: var(--primary);
+    color: var(--light);
+}
+
 #ptext { 
     position: relative;
     right: 120px;
@@ -67,7 +74,7 @@ h1, h2 {
 
 #etext { 
     position: relative;
-    right: 132px;
+    right: 120px;
     -webkit-text-stroke: 1px darkslategray;
 }
 #box:hover {
@@ -94,15 +101,17 @@ li:active {
 
 img {
     display: block;
+    display: inline;
     position: relative;
-    bottom: 55px;
-
+    bottom: -80px;
     border-radius: 100%;
+    width: 800px;
+    height: 800px;
     box-shadow: 5px 5px 20px var(--primary);
    
 }
 
 section, footer {
     position: relative;
-    top: -700px;
+    top: -350px;
 }
