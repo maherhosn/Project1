@@ -1,0 +1,105 @@
+* {
+    margin: 0 auto;
+    font-family: sans-serif;
+    
+}
+
+:root {
+    --primary: rgba(68, 88, 119, 1);
+  --secondary:rgba(238, 238, 247, 1);
+  --tertiary: rgba(49, 52, 61, 1);
+  --light: rgba(238, 238, 247, 1);
+}
+
+html {
+    text-align: center;
+    background-color: var(--light);
+}
+
+ul li {
+    list-style: none;
+    position: relative;
+    right: 20px;
+    line-height: 2;
+}
+
+header {
+    margin: 6% 0px 6% 0px;
+    
+
+    }
+
+footer {
+    margin-top: 5%;
+    color:darkblue;
+}
+
+h1 {
+    text-shadow: 0px 4px 4px black;
+    font-family: serif;
+    font-size: 60px;
+    font-style: italic;
+    color: var(--primary);
+    /* code below is from: kinsta.com  */
+    -webkit-text-stroke: 2px black;
+    /* ------------------------------- */
+  
+}
+
+/* h1:before,
+h1:after : {
+    content: ;
+} */
+
+#box {
+    width: 300px;
+    height: 35px;
+    font-family: serif;
+    font-size: 16px;
+    box-shadow: 0px 5px 5px;
+    border-radius: 20px;
+
+
+}
+
+#ptext { 
+    position: relative;
+    right: 120px;
+}
+
+#etext { 
+    position: relative;
+    right: 130px;
+}
+#box:hover {
+    border: 2px solid black;
+    background-color: lightblue;
+    color: darkblue;
+    text-decoration: underline;
+ 
+}
+
+li:hover {
+    text-decoration: underline;
+}
+
+#box:active {
+    border: 2px solid black;
+    font-size: 20px;
+    box-shadow: 0 0 20px rgb(163, 163, 163) inset;
+}
+
+li:active {
+    font-style: italic;
+}
+
+img {
+    display: block;
+    border-radius: 100%;
+   
+}
+
+section, footer {
+    position: relative;
+    top: -700px;
+}
