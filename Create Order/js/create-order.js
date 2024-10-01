@@ -51,6 +51,7 @@ submitOrderButton.addEventListener('click', function(event) {
 function createNewProductRow() {
     const newRow = document.createElement("tr");
     newRow.innerHTML = `
+        <td><input type="checkbox" class="row-checkbox"></td>
         <td>
             <select class="product">
                 <option value="Shirt" data-cost="10">Shirt</option>
