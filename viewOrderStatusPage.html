@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <!-- The following  documents were referenced to write the below code:
@@ -9,77 +10,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Order Page</title>
-    <link rel="stylesheet" href="./css/orderStatusStyle.css" />
+    <link rel="stylesheet" href="./css/orderStatusStyle.css"/>
     <script defer src="./js/orderStatusScript.js"></script>
 </head>
-
 <body>
-    <header>
-        <h1>JAM Cleaning Services</h1>
-    </header>
-
-    <div class="main-banner">
-        <h3>Customer Name: Exmple</h3>
-    </div>
-    <main>
-        <h2>Order Status Page</h2>
-        <button id="activeOrderButton" class="btn">View Active Orders</button>
-        <table class="activeOrderedProducts">
+    <h2>Create Your Order - JAM Cleaning Services</h2>
+    
+    <form id="order-form">
+        <table id="order-table" class="order-table">
             <thead>
                 <tr>
-                    <th scope="col">Product</th>
-                    <th scope="col">Dropoff Date</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Due Date</th>
-                    <th scope="col">Unit Cost</th>
+                    <th>Product</th>
+                    <th>Pre-Service Option</th>
+                    <th>Post-Service Option</th>
+                    <th>Preferred Date of Dropoff/Pickup</th>
+                    <th>Preferred Date of Delivery/Pickup</th>
+                    <th>Cost</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <th class="product" scope="row"></th>
-                    <th class="dropOff-Date" scope="row"></th>
-                    <th class="status" scope="row"></th>
-                    <th class="completion-Date" scope="row"></th>
-                    <th class="unit-Cost" scope="row"></th>
+                    <td>
+                        <select class="product">
+                            <option value="Shirt" data-cost="10">Shirt</option>
+                            <option value="Pants" data-cost="11">Pants</option>
+                            <option value="Shorts" data-cost="12">Shorts</option>
+                            <option value="Dress" data-cost="13">Dress</option>
+                            <option value="Jacket" data-cost="14">Jacket</option>
+                            <option value="Scarf" data-cost="15">Scarf</option>
+                            <option value="Hat" data-cost="16">Hat</option>
+                            <option value="Suit" data-cost="17">Suit</option>
+                            <option value="Curtain/Drapes" data-cost="18">Curtain/Drapes</option>
+                            <option value="TableCloth" data-cost="19">TableCloth</option>
+                            <option value="Pillow" data-cost="20">Pillow</option>
+                            <option value="Rug" data-cost="21">Rug</option>
+                            <option value="Towel" data-cost="22">Towel</option>
+                            <option value="Blanket" data-cost="23">Blanket</option>
+                            <option value="Jersey" data-cost="24">Jersey</option>
+                            <option value="Comforter" data-cost="25">Comforter</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select>
+                            <option value="Pickup">Pickup</option>
+                            <option value="Dropoff">Dropoff</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select>
+                            <option value="Pickup">Pickup</option>
+                            <option value="Dropoff">Dropoff</option>
+                        </select>
+                    </td>
+                    <td><input type="date"></td>
+                    <td><input type="date"></td>
+                    <td><span>$</span></td>
+                    <td>
+                        <button class="duplicate-row">Add Same Item</button>
+                    </td>
                 </tr>
             </tbody>
-            <tfoot>
-                <tr>
-                  <th scope="row" colspan="4">Total:</th>
-                  <td>Value</td>
-                </tr>
-              </tfoot>
         </table>
+
+        <button id="add-new-table">Add Another Product Set</button>
         <br><br>
-        <button id="pastOrdersButton" class="btn">View Completed Orders</button>
-        <table class="pastOrderedProducts">
-            <thead>
-                <tr>
-                    <th scope="col">Product</th>
-                    <th scope="col">Dropoff Date</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Date Fullfilled</th>
-                    <th scope="col">Unit Cost</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th class="product" scope="row"></th>
-                    <th class="dropOff-Date" scope="row"></th>
-                    <th class="status" scope="row"></th>
-                    <th class="completion-Date" scope="row"></th>
-                    <th class="unit-Cost" scope="row"></th>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                  <th scope="row" colspan="4">Total:</th>
-                  <td>Value</td>
-                </tr>
-              </tfoot>
-        </table>
-    </main>
-
+        <button id="submit-order">Submit Order</button>
+    </form>
 </body>
-
 </html>
