@@ -1,0 +1,148 @@
+* {
+  box-sizing: border-box;
+}
+/* brand color palette */
+:root {
+  --primary: rgba(68, 88, 119, 1);
+  --secondary:rgba(238, 238, 247, 1);
+  --tertiary: rgba(49, 52, 61, 1);
+  --light: rgba(238, 238, 247, 1);
+}
+body {
+  padding: 0;
+  font-family: Arial, serif;
+  color: var(--primary);
+  background-color: var(--light);
+  line-height: 1.5;
+}
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  font-family: serif;
+  font-style: italic;
+}
+header h1 {
+  color: var(--tertiary);
+  background-color: var(--secondary);
+  padding: 5px 1% 5px 1%;
+  margin: 0;
+  font-size: 4vw;
+  line-height: 1;
+}
+main {
+  margin: 16px 16px 16px 4cap;
+}
+main h2{
+  font-family: serif;
+  font-style:italic;
+  font-size: 2rem;
+  text-decoration: wavy underline overline rgb(55, 145, 206);
+  text-underline-offset: 10px;
+  padding: 10px;
+}
+.main-banner {
+  background: var(--secondary);
+  background-image: url("../images/dc1.jpg");
+  background-size:contain;
+  background-position: center;
+  background-blend-mode:normal;
+  min-height: 15vh;
+  color: var(--light);
+  padding: 2% 6%;
+  display: flex;
+  justify-content:right;
+  align-items:flex-end;
+  text-align: left;
+}
+.main-banner div {
+  flex: 0 0 90%;
+}
+.main-banner h3 {
+  background-color: var(--secondary);
+  color: var(--tertiary);
+  justify-content: right;
+  margin-top:  50px;
+  font-size: 1.3rem;
+  border-radius: 15px;
+  font-family: cursive, italic;
+  display: inline;
+}
+
+.main-banner h3:hover{
+    background-color: lightblue;
+    transition: all 0.5s ease-in;
+}
+
+.main-banner h3 {
+    background-color: var(--secondary);
+    color: var(--tertiary);
+    justify-content: right;
+    margin-top:  50px;
+    font-size: 1.3rem;
+    border-radius: 15px;
+    display: inline;
+  }
+
+table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  border: 3px solid black;
+  width: 70%
+}
+tfoot th{
+  text-align: right;
+  font-size: larger;
+  border:none;
+}
+tfoot td{
+  text-align: center;
+  font-size: larger;
+}
+th {
+  border: 3px solid black;
+  border-collapse: collapse;
+}
+.btn {
+  border: none;
+  background-color: hsl(223, 87%, 69%);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
+    0px;
+  color: hsl(0, 0%, 100%);
+  display: inline-block;
+  font-size: 15px;
+  line-height: 15px;
+  padding: 15px 15px;
+  text-align: center;
+  cursor: pointer;
+}
+button[disabled] {
+  cursor: default;
+  background: #C0C7CF;
+}
+/* media queries */
+/* media queries for a max-width of 980px */
+@media screen and (max-width: 980px) {
+  header {
+    padding: 0 0 10px 0;
+    justify-content: center;
+    text-align: center;
+  }
+  header h1 {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    font-size: 10vw;
+  }
+}
+/* TODO: add media query for a max-width of 768px */
+@media screen and (max-width: 768px) {
+  .flex-container{
+    flex-direction: column;
+    width: 100%;
+  }
+  .flex-item:first-child{
+    min-height: 150px;
+    max-height: 150px;
+  }
+}

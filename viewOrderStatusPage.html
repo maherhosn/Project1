@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Order Page</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script defer src="./js/script.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>JAM Cleaning Services</h1>
+    </header>
+
+    <div class="main-banner">
+        <h3>Customer Name: Exmple</h3>
+    </div>
+    <main>
+        <h2>Order Status Page</h2>
+        <button id="activeOrderButton" class="btn">View Active Orders</button>
+        <table class="activeOrderedProducts">
+            <thead>
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Dropoff Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Due Date</th>
+                    <th scope="col">Unit Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th class="product" scope="row"></th>
+                    <th class="dropOff-Date" scope="row"></th>
+                    <th class="status" scope="row"></th>
+                    <th class="completion-Date" scope="row"></th>
+                    <th class="unit-Cost" scope="row"></th>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                  <th scope="row" colspan="4">Total:</th>
+                  <td>Value</td>
+                </tr>
+              </tfoot>
+        </table>
+        <br><br>
+        <button id="pastOrdersButton" class="btn">View Completed Orders</button>
+        <table class="pastOrderedProducts">
+            <thead>
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Dropoff Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Date Fullfilled</th>
+                    <th scope="col">Unit Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th class="product" scope="row"></th>
+                    <th class="dropOff-Date" scope="row"></th>
+                    <th class="status" scope="row"></th>
+                    <th class="completion-Date" scope="row"></th>
+                    <th class="unit-Cost" scope="row"></th>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                  <th scope="row" colspan="4">Total:</th>
+                  <td>Value</td>
+                </tr>
+              </tfoot>
+        </table>
+    </main>
+
+</body>
+
+</html>
