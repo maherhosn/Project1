@@ -34,22 +34,18 @@ footer {
     color:darkblue;
 }
 
-h1 {
+h1, h2 {
     text-shadow: 0px 4px 4px black;
     font-family: serif;
     font-size: 60px;
     font-style: italic;
     color: var(--primary);
-    /* code below is from: kinsta.com  */
+    /* This code reference is from: kinsta.com  */
     -webkit-text-stroke: 2px black;
     /* ------------------------------- */
   
 }
 
-/* h1:before,
-h1:after : {
-    content: ;
-} */
 
 #box {
     width: 300px;
@@ -95,7 +91,11 @@ li:active {
 
 img {
     display: block;
+    position: relative;
+    bottom: 55
+    px;
     border-radius: 100%;
+    box-shadow: 5px 5px 20px var(--primary);
    
 }
 
