@@ -1,8 +1,8 @@
-<!-- The following  documents were referenced to write the below code:
+/* <!-- The following  documents were referenced to write the below code:
  - FSF-FT-EAST-SEPTEMBER => 02-Advanced-CSS => -01-Challenge => Assets => style.css
  - Code with collegues Jaakob and Adam
  miro website for wireframe reference: https://miro.com/app/board/uXjVLYxdWE0=/
-  -->
+  --> */
 * {
   box-sizing: border-box;
 }
@@ -93,7 +93,7 @@ table {
   table-layout: fixed;
   border-collapse: collapse;
   border: 3px solid black;
-  width: 70%
+  width: 95%;
 }
 tfoot th{
   text-align: right;
