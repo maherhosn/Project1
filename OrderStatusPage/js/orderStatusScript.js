@@ -1,124 +1,45 @@
-const orderForm = document.getElementById("order-form");
-const addNewTableButton = document.getElementById("add-new-table");
-const submitOrderButton = document.getElementById("submit-order");
-const orderTable = document.getElementById("order-table").getElementsByTagName("tbody")[0];
+// ? Grab all the references to the DOM elements
+const aTBody = document.querySelector('#aTBody');
+const viewActiveOrders = document.getElementById("activeOrderButton");
+const pastOrders = document.getElementById("pastOrdersButton");
 
-// Duplicating same row
-orderTable.addEventListener("click", function(event) {
-    if (event.target && event.target.nodeName === "BUTTON" && event.target.classList.contains('duplicate-row')) {
-        event.preventDefault();
-        const row = event.target.closest("tr");
-        const clonedRow = row.cloneNode(true);
-        
-        // removing button from cloned row
-        const clonedRowButton = clonedRow.querySelector("button.duplicate-row");
-        if (clonedRowButton) {
-            clonedRowButton.remove();
-        }
 
-        // copying selected values from dropdown list
-        const originalValues = row.querySelectorAll("select");
-        const clonedValues = clonedRow.querySelectorAll("select");
-        originalValues.forEach((select, index) => {
-            clonedValues[index].value = select.value;
-        });
-
-        // insert cloned row after current
-        row.after(clonedRow);
+// ? Function to load from local storage. This function will be called on page load.
+function loadFromLocalStorage() {
+  // TODO: Load and parse the data from local storage and paint the images and text on the mood board
+  storedData = JSON.parse(localStorage.getItem('JAM_order'));
+  if (storedData !== null) {
+    tempStorageObject = storedData;
+    console.log(tempStorageObject);
+    // Paint the stored images on mood board
+    for (let i = 0; i < tempStorageObject.length; i++) {
+      let tableRow = document.createElement("tr");
+      tableRow.id=`row${i}`;
+      aTBody.appendChild(tableRow);
+      let rowCell = document.getElementById(`row${i}`);
+      let product = document.createElement("th");
+      product.textContent = tempStorageObject[i].product;
+      let cost = document.createElement("th");
+      cost.textContent = tempStorageObject[i].cost;
+      let preService= document.createElement("th");
+      preService.textContent = tempStorageObject[i].preService;
+      let postService = document.createElement("th");
+      postService.textContent = tempStorageObject[i].postService;
+      let dropoffDate = document.createElement("th");
+      dropoffDate.textContent = tempStorageObject[i].dropoffDate;
+      let deliveryDate = document.createElement("th");
+      deliveryDate.textContent = tempStorageObject[i].deliveryDate;
+      console.log(""+product +dropoffDate +preService +deliveryDate +cost);
+      tableRow.appendChild(product);
+      tableRow.appendChild(dropoffDate);
+      tableRow.appendChild(preService);
+      tableRow.appendChild(deliveryDate);
+      tableRow.appendChild(cost);
     }
-});
-
-// adding new default product row
-addNewTableButton.addEventListener('click', function(event) {
-    event.preventDefault();
-    const newRow = createNewProductRow();
-    orderTable.appendChild(newRow);
-});
-
-// submitting the order / store locally
-submitOrderButton.addEventListener('click', function(event) {
-    event.preventDefault();
-    const orderDetails = getOrderDetails();
-    if (orderDetails.length > 0) {
-        localStorage.setItem('JAM_order', JSON.stringify(orderDetails));
-        alert("Order submitted successfully!");
-    } else {
-        alert("Please add at least one product before submitting the order.");
-    }
-})
-
-// creating new default row in HTML
-function createNewProductRow() {
-    const newRow = document.createElement("tr");
-    newRow.innerHTML = `
-        <td>
-            <select class="product">
-                <option value="Shirt" data-cost="10">Shirt</option>
-                <option value="Pants" data-cost="11">Pants</option>
-                <option value="Shorts" data-cost="12">Shorts</option>
-                <option value="Dress" data-cost="13">Dress</option>
-                <option value="Jacket" data-cost="14">Jacket</option>
-                <option value="Scarf" data-cost="15">Scarf</option>
-                <option value="Hat" data-cost="16">Hat</option>
-                <option value="Suit" data-cost="17">Suit</option>
-                <option value="Curtain/Drapes" data-cost="18">Curtain/Drapes</option>
-                <option value="TableCloth" data-cost="19">TableCloth</option>
-                <option value="Pillow" data-cost="20">Pillow</option>
-                <option value="Rug" data-cost="21">Rug</option>
-                <option value="Towel" data-cost="22">Towel</option>
-                <option value="Blanket" data-cost="23">Blanket</option>
-                <option value="Jersey" data-cost="24">Jersey</option>
-                <option value="Comforter" data-cost="25">Comforter</option>
-            </select>
-        </td>
-        <td>
-            <select>
-                <option value="Pickup">Pickup</option>
-                <option value="Dropoff">Dropoff</option>
-            </select>
-        </td>
-        <td>
-            <select>
-                <option value="Pickup">Pickup</option>
-                <option value="Dropoff">Dropoff</option>
-            </select>
-        </td>
-        <td><input type="date"></td>
-        <td><input type="date"></td>
-        <td><span>$</span></td>
-        <td>
-            <button class="duplicate-row">Add Same Item</button>
-        </td>
-    `;
-    return newRow;
+  }
 }
 
-// getting all values from each row
-function getOrderDetails() {
-    const rows = document.querySelectorAll("#order-table tbody tr");
-    const orderDetails = [];
-
-    rows.forEach(row => {
-        const productElement = row.querySelector('.product');
-        const product = productElement.value;
-        const cost = productElement.options[productElement.selectedIndex].dataset.cost;
-        const preService = row.querySelector('td:nth-child(2) select').value;
-        const postService = row.querySelector('td:nth-child(3) select').value;
-        const dropoffDate = row.querySelector('td:nth-child(4) input').value;
-        const deliveryDate = row.querySelector('td:nth-child(5) input').value;
-
-        if (product && dropoffDate && deliveryDate) {
-            orderDetails.push({
-                product,
-                cost,
-                preService,
-                postService,
-                dropoffDate,
-                deliveryDate
-            });
-        }
-    });
-
-    // console.log(orderDetails);
-    return orderDetails;
-}
+//  ? We create an event listener for the image URL input field. This will create an image element and attach it to the mood board with the URL provided by the user.
+viewActiveOrders.addEventListener('click', function () {
+loadFromLocalStorage();
+});
