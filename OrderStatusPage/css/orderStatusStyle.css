@@ -95,6 +95,13 @@ table {
   border: 3px solid black;
   width: 70%
 }
+#aTBody button{
+  background-color: rgb(185, 185, 194);
+  display:flex;
+  justify-content:space-around;
+  align-items:flex-end;
+  text-align: left;
+}
 tfoot th{
   text-align: right;
   font-size: larger;

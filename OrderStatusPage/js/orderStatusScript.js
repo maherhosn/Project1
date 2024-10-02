@@ -1,3 +1,9 @@
+// <!-- The following  documents were referenced to write the below code:
+//  - FSF-FT-EAST-SEPTEMBER => 02-Advanced-CSS => -01-Challenge => Assets => style.css
+//  - Code with collegues Jaakob and Adam
+//  miro website for wireframe reference: https://miro.com/app/board/uXjVLYxdWE0=/
+//   -->
+
 // ? Grab all the references to the DOM elements
 const aTBody = document.querySelector('#aTBody');
 const viewActiveOrders = document.getElementById("activeOrderButton");
@@ -32,9 +38,26 @@ function loadFromLocalStorage() {
       console.log(""+product +dropoffDate +preService +deliveryDate +cost);
       tableRow.appendChild(product);
       tableRow.appendChild(dropoffDate);
-      tableRow.appendChild(preService);
+
+      // this is the status
+      let status = document.createElement("th");
+      let statusText = checkOrderStatus(tempStorageObject[i].deliveryDate)
+      status.textContent = statusText;
+      tableRow.appendChild(status);
+
       tableRow.appendChild(deliveryDate);
       tableRow.appendChild(cost);
+
+      if(statusText == "Completed") {
+        let completeBtn = document.createElement("button");
+        completeBtn.textContent = "Picked up?"
+        completeBtn.addEventListener("click", function() {
+          // logic for removing this order from JAM_order
+          // adding this order to the completed order
+        })
+        tableRow.appendChild(completeBtn);
+      }
+
     }
   }
 }
@@ -42,4 +65,34 @@ function loadFromLocalStorage() {
 //  ? We create an event listener for the image URL input field. This will create an image element and attach it to the mood board with the URL provided by the user.
 viewActiveOrders.addEventListener('click', function () {
 loadFromLocalStorage();
+document.querySelector("#aTFoot").textContent = calculateActiveTotalPrice();
 });
+
+function calculateActiveTotalPrice() {
+  const rows = document.querySelectorAll("#aTBody tr th:last-child");
+  console.log(rows);
+  let total = 0;
+
+  rows.forEach(row => {
+      var cost=row.textContent;
+      if(cost != "")
+      {
+        total += parseFloat(cost);
+      }
+  });
+
+  return total;
+}
+
+function checkOrderStatus(dueDate) {
+  const todayDate = Date.now();
+  const checkDate = new Date(dueDate);
+
+  if(todayDate >= checkDate){
+    return ("Completed");
+  }
+  else {
+    return ("In Progress")
+  }
+
+}
