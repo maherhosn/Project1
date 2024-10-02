@@ -2,6 +2,7 @@ const orderForm = document.getElementById("order-form");
 const addNewTableButton = document.getElementById("add-new-table");
 const submitOrderButton = document.getElementById("submit-order");
 const orderTable = document.getElementById("order-table").getElementsByTagName("tbody")[0];
+const totalPriceElement = document.getElementById("total-price");
 
 // Duplicating same row
 orderTable.addEventListener("click", function(event) {
@@ -25,6 +26,7 @@ orderTable.addEventListener("click", function(event) {
 
         // insert cloned row after current
         row.after(clonedRow);
+        updatePrices();
     }
 });
 
@@ -33,9 +35,10 @@ addNewTableButton.addEventListener('click', function(event) {
     event.preventDefault();
     const newRow = createNewProductRow();
     orderTable.appendChild(newRow);
+    // updatePrices();
 });
 
-// submitting the order / store locally
+// submitting the order & store locally
 submitOrderButton.addEventListener('click', function(event) {
     event.preventDefault();
     const orderDetails = getOrderDetails();
@@ -45,7 +48,40 @@ submitOrderButton.addEventListener('click', function(event) {
     } else {
         alert("Please add at least one product before submitting the order.");
     }
-})
+});
+
+// updating price & total price based on selected product
+function updatePrices() {
+    const rows = document.querySelectorAll("#order-table tbody tr");
+    rows.forEach(row => {
+        const productElement = row.querySelector(".product");
+        const priceElement = row.querySelector(".price");
+        const cost = productElement.options[productElement.selectedIndex]?.dataset.cost;
+        if (cost) {
+            priceElement.textContent = `$${cost}`;
+        } else {
+            priceElement.textContent = "$0";
+        }
+        
+    });
+    
+    const totalPrice = calculateTotalPrice();
+    totalPriceElement.textContent = `Total Price: $${totalPrice}`;
+}
+
+// updating total price of order
+function calculateTotalPrice() {
+    const rows = document.querySelectorAll("#order-table tbody tr");
+    let total = 0;
+
+    rows.forEach(row => {
+        const productElement = row.querySelector(".product");
+        const cost = productElement.options[productElement.selectedIndex].dataset.cost;
+        total += parseFloat(cost);
+    });
+
+    return total;
+}
 
 // creating new default row in HTML
 function createNewProductRow() {
@@ -86,11 +122,12 @@ function createNewProductRow() {
         </td>
         <td><input type="date"></td>
         <td><input type="date"></td>
-        <td><span>$</span></td>
+        <td><span class="price">$0</span></td>
         <td>
             <button class="duplicate-row">Add Same Item</button>
         </td>
     `;
+    newRow.querySelector('.product').addEventListener('change', updatePrices);
     return newRow;
 }
 
@@ -103,10 +140,10 @@ function getOrderDetails() {
         const productElement = row.querySelector('.product');
         const product = productElement.value;
         const cost = productElement.options[productElement.selectedIndex].dataset.cost;
-        const preService = row.querySelector('td:nth-child(2) select').value;
-        const postService = row.querySelector('td:nth-child(3) select').value;
-        const dropoffDate = row.querySelector('td:nth-child(4) input').value;
-        const deliveryDate = row.querySelector('td:nth-child(5) input').value;
+        const preService = row.querySelector('td:nth-child(3) select').value;
+        const postService = row.querySelector('td:nth-child(4) select').value;
+        const dropoffDate = row.querySelector('td:nth-child(5) input').value;
+        const deliveryDate = row.querySelector('td:nth-child(6) input').value;
 
         if (product && dropoffDate && deliveryDate) {
             orderDetails.push({
@@ -120,6 +157,6 @@ function getOrderDetails() {
         }
     });
 
-    // console.log(orderDetails);
+    console.log(orderDetails);
     return orderDetails;
 }

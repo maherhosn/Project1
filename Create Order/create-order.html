@@ -68,22 +68,25 @@
                         </td>
                         <td><input type="date"></td>
                         <td><input type="date"></td>
-                        <td><span>$</span></td>
+                        <td><span class="price">$0</span></td>
                         <td>
-                            <button class="duplicate-row">Add Same Item</button>
+                            <button class="duplicate-row" type="button">Add Same Item</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
 
-            <button id="add-new-table">Add Another Product Set</button>
-            <button id="remove-selected">Remove Selected Rows</button>
+            <button id="add-new-table" type="button">Add Another Product Set</button>
+            <button id="remove-selected" type="button">Remove Selected Rows</button>
             <br><br>
-            <button id="submit-order">Submit Order</button>
+            <button id="submit-order" type="button">Submit Order</button>
             <a href='../OrderStatusPage/viewOrderStatusPage.html'>
-                <button type="button" id="view-order">View Order</button>
+                <button id="view-order" type="button">View Order</button>
             </a> 
         </form>
+
+        <div id="total-price">Total Price: $0.00</div>
+
     </main>
 </body>
 </html>
