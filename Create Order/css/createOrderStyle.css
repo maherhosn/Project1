@@ -6,6 +6,7 @@
 * {
   box-sizing: border-box;
 }
+
 /* brand color palette */
 :root {
   --primary: rgba(68, 88, 119, 1);
@@ -13,6 +14,7 @@
   --tertiary: rgba(49, 52, 61, 1);
   --light: rgba(238, 238, 247, 1);
 }
+
 body {
   padding: 0;
   font-family: Arial, serif;
@@ -20,6 +22,7 @@ body {
   background-color: var(--light);
   line-height: 1.5;
 }
+
 header {
   display: flex;
   flex-direction: row;
@@ -27,6 +30,7 @@ header {
   font-family: serif;
   font-style: italic;
 }
+
 header h1 {
   color: var(--tertiary);
   background-color: var(--secondary);
@@ -35,9 +39,11 @@ header h1 {
   font-size: 4vw;
   line-height: 1;
 }
+
 main {
   margin: 16px 16px 16px 4cap;
 }
+
 main h2{
   font-family: serif;
   font-style:italic;
@@ -46,6 +52,7 @@ main h2{
   text-underline-offset: 10px;
   padding: 10px;
 }
+
 .main-banner {
   background: var(--secondary);
   background-image: url("../images/dc1.jpg");
@@ -60,9 +67,11 @@ main h2{
   align-items:flex-end;
   text-align: left;
 }
+
 .main-banner div {
   flex: 0 0 90%;
 }
+
 .main-banner h3 {
   background-color: var(--secondary);
   color: var(--tertiary);
@@ -95,19 +104,23 @@ table {
   border: 3px solid black;
   width: 95%;
 }
+
 tfoot th{
   text-align: right;
   font-size: larger;
   border:none;
 }
+
 tfoot td{
   text-align: center;
   font-size: larger;
 }
+
 th {
   border: 3px solid black;
   border-collapse: collapse;
 }
+
 .btn {
   border: none;
   background-color: hsl(223, 87%, 69%);
@@ -121,10 +134,19 @@ th {
   text-align: center;
   cursor: pointer;
 }
+
 button[disabled] {
   cursor: default;
   background: #C0C7CF;
 }
+
+.order-table select,
+.order-table input[type="date"] {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
 /* media queries */
 /* media queries for a max-width of 980px */
 @media screen and (max-width: 980px) {
@@ -133,6 +155,7 @@ button[disabled] {
     justify-content: center;
     text-align: center;
   }
+
   header h1 {
     width: 100%;
     padding: 5px;
@@ -140,14 +163,25 @@ button[disabled] {
     font-size: 10vw;
   }
 }
-/* TODO: add media query for a max-width of 768px */
+
+/* media query for a max-width of 768px */
 @media screen and (max-width: 768px) {
   .flex-container{
     flex-direction: column;
     width: 100%;
   }
+
   .flex-item:first-child{
     min-height: 150px;
     max-height: 150px;
   }
+
+  th {
+    font-size: smaller;
+  }
+
+  /* .duplicate-row {
+    min-height: 40px;
+    max-height: 40px;
+  } */
 }
