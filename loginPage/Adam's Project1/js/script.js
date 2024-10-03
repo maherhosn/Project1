@@ -7,35 +7,34 @@ const usernameText = document.getElementById("username");
 
 function loader() {
 
-let loadingTime = 0;
+    let loadingTime = 0;
 
-function loadTime() {
-    const loadInterval = setInterval(function () {
-       
-        loadingTime++;
-       
-     progressEl.textContent = loadingTime + '% Loading..........';
-        if (loadingTime == 99) {
-           
-         window.location.href = "Create Order/create-order.html";
-        }
+    function loadTime() {
+        const loadInterval = setInterval(function () {
 
-    
-    }, 20);
-}
+            loadingTime++;
 
-loadTime();
+            progressEl.textContent = loadingTime + '% Loading..........';
+            if (loadingTime == 99) {
+
+                window.location.href = "Create Order/create-order.html";
+            }
+
+
+        }, 20);
+    }
+
+    loadTime();
 };
 
 loginEl.addEventListener('click', function () {
     let firstName = usernameText.value;
 
-    if (!((firstName === "") || (firstName ===null)))
-    {
+    if (!((firstName === "") || (firstName === null))) {
         localStorage.setItem('profileName', firstName);
         loader();
     }
-    else{
+    else {
         alert("No username Entered")
     }
 });
