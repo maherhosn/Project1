@@ -96,7 +96,7 @@ table {
   width: 90%
 }
 
-#aTBody button{
+#aTBody button, #pTBody button{
   background-color: var(--primary);
   color: var(--light);
   width:100%;
