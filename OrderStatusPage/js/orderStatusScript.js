@@ -16,18 +16,12 @@ window.addEventListener("load", function () {
 // Function load Active List will read from local storage and load the items on the page inside a table 
 function loadActiveList() {
   storedData = JSON.parse(localStorage.getItem('JAM_order'));
-  var savedData = [];
-  tempData = JSON.parse(localStorage.getItem('JAM_completed'));
 
   const element = document.getElementById("aTBody");
   while (element.firstChild) {
     element.removeChild(element.firstChild);
   }
 
-
-  if (tempData !== null) {
-    savedData = tempData;
-  }
 
   if (storedData !== null) {
     tempStorageObject = storedData;
@@ -83,6 +77,12 @@ function loadActiveList() {
         // logic for removing this order from JAM_order
         // adding this order to the JAM_completed
         completeBtn.addEventListener("click", function () {
+
+          var savedData = [];
+          tempData = JSON.parse(localStorage.getItem('JAM_completed'));
+          if (tempData !== null) {
+            savedData = tempData;
+          }
 
           let userChoice = window.confirm(`Can you confirm that you recieved the ${tempStorageObject[i].product} item?`);
           pValue = tempStorageObject[i].product;
