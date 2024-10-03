@@ -1,6 +1,7 @@
 const orderForm = document.getElementById("order-form");
 const addNewTableButton = document.getElementById("add-new-table");
 const submitOrderButton = document.getElementById("submit-order");
+const removeSelectedButton = document.getElementById("remove-selected");
 const orderTable = document.getElementById("order-table").getElementsByTagName("tbody")[0];
 const totalPriceElement = document.getElementById("total-price");
 
@@ -16,6 +17,12 @@ orderTable.addEventListener("click", function(event) {
         if (clonedRowButton) {
             clonedRowButton.remove();
         }
+
+        // disable ability to edit the cloned values
+        const clonedInputs = clonedRow.querySelectorAll("select, input[type='date']");
+        clonedInputs.forEach(input => {
+            input.disabled = true;
+        });
 
         // copying selected values from dropdown list
         const originalValues = row.querySelectorAll("select");
@@ -48,6 +55,19 @@ submitOrderButton.addEventListener('click', function(event) {
     } else {
         alert("Please add at least one product before submitting the order.");
     }
+});
+
+// remove selected rows
+removeSelectedButton.addEventListener("click", function(event) {
+    event.preventDefault()
+    const checkboxes = orderTable.querySelectorAll(".row-checkbox");
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            const row = checkbox.closest("tr");
+            row.remove();
+        }
+    });
+    updatePrices();
 });
 
 // updating price & total price based on selected product
