@@ -20,6 +20,7 @@ html {
 ul li {
     list-style: none;
     position: relative;
+    bottom: 20px;
     right: 20px;
     line-height: 2;
 }
@@ -114,4 +115,28 @@ img {
 section, footer {
     position: relative;
     top: -350px;
+}
+
+
+#enter {
+    width: 300px;
+    height: 35px;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: bolder;
+    box-shadow: 0px 5px 5px;
+    border-radius: 20px;
+ 
+}
+
+h3 {
+    margin: 0 auto;
+    padding: 2px;
+    font-family: sans-serif;
+    /* background-color: var(--light); */
+    color: var(--primary);
+    /* width: 300px;
+    height: 35px;
+    box-shadow: 0px 5px 5px;
+    border-radius: 20px; */
 }
