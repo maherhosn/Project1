@@ -10,10 +10,10 @@
 <body>
 
     <header>
-        <h1>JAM Cleaning Services</h1>
+        <h1>JAM Laundry Cleaning Services</h1>
     </header>
     <div class="main-banner">
-        <h3>Customer Name:</h3>
+        <h3 id="firstName">Customer Name:</h3>
     </div>
     <main>
         <form id="order-form">
@@ -34,7 +34,7 @@
                     <tr>
                         <td><input type="checkbox" class="row-checkbox"></td>
                         <td>
-                            <select class="product">
+                            <select class="product">                               
                                 <option value="Shirt" data-cost="10">Shirt</option>
                                 <option value="Pants" data-cost="11">Pants</option>
                                 <option value="Shorts" data-cost="12">Shorts</option>
@@ -65,9 +65,9 @@
                                 <option value="Dropoff">Dropoff</option>
                             </select>
                         </td>
-                        <td><input type="date" class="dropoff-date"></td>
-                        <td><input type="date" class="delivery-date"></td>
-                        <td><span class="price">$0</span></td>
+                        <td><input type="date" class="dropoff-date" id="drDate"></td>
+                        <td><input type="date" class="delivery-date" id="delDate"></td>
+                        <td><span class="price"></span></td>
                         <td>
                             <button class="duplicate-row" type="button" class="btn">Add Same Item</button>
                         </td>

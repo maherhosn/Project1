@@ -5,6 +5,23 @@ const removeSelectedButton = document.getElementById("remove-selected");
 const orderTable = document.getElementById("order-table").getElementsByTagName("tbody")[0];
 const totalPriceElement = document.getElementById("total-price");
 
+
+
+//
+window.addEventListener("load", function(){
+    const username=this.localStorage.getItem("profileName");
+    this.document.getElementById("firstName").textContent=`Customer Name: ${username}`;
+    let todayDate = Date.now();
+    console.log("Tdoay's date is:" + todayDate);
+    let drDate = this.document.getElementById("drDate");
+    let delDate = this.document.getElementById("delDate");
+    var newDate = `${todayDate.getYear()}-${todayDate.getMonth()}-${todayDate.getDay()}`;
+    drDate.value=`${todayDate.getYear()}-${todayDate.getMonth()}-${todayDate.getDay()}`;
+    delDate.value=`${todayDate.getYear()}-${todayDate.getMonth()}-${todayDate.getDay()}`;
+    updatePrices();
+    disablePastDates();
+})
+
 // Duplicating same row
 orderTable.addEventListener("click", function(event) {
     if (event.target && event.target.nodeName === "BUTTON" && event.target.classList.contains('duplicate-row')) {
@@ -42,7 +59,8 @@ addNewTableButton.addEventListener('click', function(event) {
     event.preventDefault();
     const newRow = createNewProductRow();
     orderTable.appendChild(newRow);
-    // updatePrices();
+    updatePrices();
+    disablePastDates();
 });
 
 // submitting the order & store locally
@@ -179,4 +197,13 @@ function getOrderDetails() {
 
     console.log(orderDetails);
     return orderDetails;
+}
+
+function disablePastDates() {
+    const dateInputs = document.querySelectorAll('input[type="date"]');
+    const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+
+    dateInputs.forEach(input => {
+        input.setAttribute('min', today); // Set the minimum date to today
+    });
 }
