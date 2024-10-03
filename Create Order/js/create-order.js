@@ -11,15 +11,9 @@ const totalPriceElement = document.getElementById("total-price");
 window.addEventListener("load", function(){
     const username=this.localStorage.getItem("profileName");
     this.document.getElementById("firstName").textContent=`Customer Name: ${username}`;
-    let todayDate = Date.now();
-    console.log("Tdoay's date is:" + todayDate);
-    let drDate = this.document.getElementById("drDate");
-    let delDate = this.document.getElementById("delDate");
-    var newDate = `${todayDate.getYear()}-${todayDate.getMonth()}-${todayDate.getDay()}`;
-    drDate.value=`${todayDate.getYear()}-${todayDate.getMonth()}-${todayDate.getDay()}`;
-    delDate.value=`${todayDate.getYear()}-${todayDate.getMonth()}-${todayDate.getDay()}`;
     updatePrices();
     disablePastDates();
+    setTodaysDate();
 })
 
 // Duplicating same row
@@ -38,7 +32,12 @@ orderTable.addEventListener("click", function(event) {
         // disable ability to edit the cloned values
         const clonedInputs = clonedRow.querySelectorAll("select, input[type='date']");
         clonedInputs.forEach(input => {
-            input.disabled = true;
+            const deliveryDate = input.closest("td").cellIndex === 5;
+            if (deliveryDate) {
+                input.disabled = false;
+            } else {
+                input.disabled = true;
+            }
         });
 
         // copying selected values from dropdown list
@@ -71,7 +70,7 @@ submitOrderButton.addEventListener('click', function(event) {
         localStorage.setItem('JAM_order', JSON.stringify(orderDetails));
         alert("Order submitted successfully!");
     } else {
-        alert("Please add at least one product before submitting the order.");
+        alert("Invalid Order");
     }
 });
 
@@ -158,13 +157,16 @@ function createNewProductRow() {
                 <option value="Dropoff">Dropoff</option>
             </select>
         </td>
-        <td><input type="date"></td>
-        <td><input type="date"></td>
+        <td><input type="date" class="dropoff-date" id="drDate"></td>
+        <td><input type="date" class="delivery-date" id="delDate"></td>
         <td><span class="price">$0</span></td>
         <td>
             <button class="duplicate-row">Add Same Item</button>
         </td>
     `;
+    const dropoffDateInput = newRow.querySelector('td:nth-child(5) input[type="date"]');
+    const today = new Date().toISOString().split('T')[0];
+    dropoffDateInput.value = today;
     newRow.querySelector('.product').addEventListener('change', updatePrices);
     return newRow;
 }
@@ -206,4 +208,16 @@ function disablePastDates() {
     dateInputs.forEach(input => {
         input.setAttribute('min', today); // Set the minimum date to today
     });
+}
+
+// get todays date in yyy-mm-dd
+function setTodaysDate() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+
+    const formatDate = `${year}-${month}-${day}`;
+    // console.log(formatDate);
+    document.getElementById("drDate").value = formatDate;
 }
