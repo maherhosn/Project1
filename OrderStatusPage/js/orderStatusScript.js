@@ -9,53 +9,53 @@ const aTBody = document.querySelector('#aTBody');
 const viewActiveOrders = document.getElementById("activeOrderButton");
 const viewPastOrders = document.getElementById("pastOrdersButton");
 
-
+window.addEventListener("load", function () {
+  const username = this.localStorage.getItem("profileName");
+  this.document.getElementById("firstName").textContent = `Customer Name: ${username}`;
+})
 // Function load Active List will read from local storage and load the items on the page inside a table 
 function loadActiveList() {
   storedData = JSON.parse(localStorage.getItem('JAM_order'));
   var savedData = [];
   tempData = JSON.parse(localStorage.getItem('JAM_completed'));
-  
-  const element= document.getElementById("aTBody");
+
+  const element = document.getElementById("aTBody");
   while (element.firstChild) {
     element.removeChild(element.firstChild);
   }
-  
+
 
   if (tempData !== null) {
     savedData = tempData;
   }
-  
+
   if (storedData !== null) {
     tempStorageObject = storedData;
 
     for (let i = 0; i < tempStorageObject.length; i++) {
-      
+
       let tableRow = document.createElement("tr");
       tableRow.id = `row${i}`;
-      tableRow.classList="tempRows";
       aTBody.appendChild(tableRow);
-      
-      let rowCell = document.getElementById(`row${i}`);
-      
+
       let product = document.createElement("th");
       product.textContent = tempStorageObject[i].product;;
-      
+
       let cost = document.createElement("th");
       cost.textContent = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
       }).format(tempStorageObject[i].cost);
-      
+
       let preService = document.createElement("th");
       preService.textContent = tempStorageObject[i].preService;
-     
+
       let postService = document.createElement("th");
       postService.textContent = tempStorageObject[i].postService;
-     
+
       let dropoffDate = document.createElement("th");
       dropoffDate.textContent = tempStorageObject[i].dropoffDate;;
-     
+
       let deliveryDate = document.createElement("th");
       deliveryDate.textContent = tempStorageObject[i].deliveryDate;;
 
@@ -100,14 +100,15 @@ function loadActiveList() {
               dDateValue,
               costValue
             });
-            
+
             localStorage.setItem('JAM_completed', JSON.stringify(savedData));
             storedData.splice(i, 1);
             console.log("I am loggin this piece" + JSON.stringify(storedData));
             localStorage.setItem('JAM_order', JSON.stringify(storedData));
-            window.location.reload();
+            // window.location.reload();
+            loadActiveList();
+            document.querySelector("#aTFoot").textContent = calculateActiveTotalPrice();
           }
-
         })
       }
     }
@@ -119,21 +120,21 @@ function loadCompletedList() {
 
   savedList = JSON.parse(localStorage.getItem('JAM_completed'));
 
-  const element= document.getElementById("pTBody");
+  const element = document.getElementById("pTBody");
   while (element.firstChild) {
     element.removeChild(element.firstChild);
   }
-  
+
   if (savedList !== null) {
-  
+
     tempStorageItem = savedList;
 
     for (let i = 0; i < tempStorageItem.length; i++) {
-  
+
       let tableRow = document.createElement("tr");
       tableRow.id = `row${i}`;
       pTBody.appendChild(tableRow);
-  
+
       let rowCell = document.getElementById(`row${i}`);
 
       let cProduct = document.createElement("th");
@@ -160,6 +161,27 @@ function loadCompletedList() {
       tableRow.appendChild(cStatus);
       tableRow.appendChild(delDate);
       tableRow.appendChild(cCost);
+
+      // This will populate a button once the item / product is complete and ready for pickup
+
+
+      let savedBtn = document.createElement("button");
+      savedBtn.id = "savedButton";
+      savedBtn.textContent = "Remove?"
+      tableRow.appendChild(savedBtn);
+
+      //The button function that will move the item from one local storage and put it in another
+      // logic for removing this order from JAM_order
+      // adding this order to the JAM_completed
+      savedBtn.addEventListener("click", function () {
+
+        let userChoice = window.confirm(`Can you confirm that you want to remove the ${tempStorageItem[i].pValue} item?`);
+
+        savedList.splice(i, 1);
+        localStorage.setItem('JAM_completed', JSON.stringify(savedList));
+        loadCompletedList();
+        document.querySelector("#pTFoot").textContent = calculateCompletedTotalPrice();
+      })
     }
   }
 }
