@@ -16,6 +16,12 @@ function loadActiveList() {
   var savedData = [];
   tempData = JSON.parse(localStorage.getItem('JAM_completed'));
   
+  const element= document.getElementById("aTBody");
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
+  }
+  
+
   if (tempData !== null) {
     savedData = tempData;
   }
@@ -27,6 +33,7 @@ function loadActiveList() {
       
       let tableRow = document.createElement("tr");
       tableRow.id = `row${i}`;
+      tableRow.classList="tempRows";
       aTBody.appendChild(tableRow);
       
       let rowCell = document.getElementById(`row${i}`);
@@ -111,6 +118,11 @@ function loadActiveList() {
 function loadCompletedList() {
 
   savedList = JSON.parse(localStorage.getItem('JAM_completed'));
+
+  const element= document.getElementById("pTBody");
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
+  }
   
   if (savedList !== null) {
   
