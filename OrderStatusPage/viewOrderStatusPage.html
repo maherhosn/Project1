@@ -43,10 +43,10 @@
                     <th></th>
                 </tr>
             </tbody>
-            <tfoot>
+            <tfoot class="aTFoot">
                 <tr>
                     <th scope="row" colspan="4">Total:</th>
-                    <td>Value</td>
+                    <td id="aTFoot"></td>
                 </tr>
             </tfoot>
         </table>
@@ -54,27 +54,27 @@
         <button id="pastOrdersButton" class="btn">View Completed Orders</button>
         <table class="pastOrderedProducts">
             <thead>
-                <tr>
-                    <th scope="col">Product</th>
-                    <th scope="col">Dropoff Date</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Date Fullfilled</th>
-                    <th scope="col">Unit Cost</th>
+                <tr scope="col">
+                    <th>Product</th>
+                    <th>Dropoff Date</th>
+                    <th>Status</th>
+                    <th>Date Fullfilled</th>
+                    <th>Unit Cost</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <th class="product" scope="row"></th>
-                    <th class="dropOff-Date" scope="row"></th>
-                    <th class="status" scope="row"></th>
-                    <th class="completion-Date" scope="row"></th>
-                    <th class="unit-Cost" scope="row"></th>
+            <tbody id="pTBody">
+                <tr scope="row">
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </tbody>
-            <tfoot>
+            <tfoot class="pTFoot">
                 <tr>
                     <th scope="row" colspan="4">Total:</th>
-                    <td>Value</td>
+                    <td id="pTFoot"></td>
                 </tr>
             </tfoot>
         </table>
