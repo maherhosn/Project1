@@ -24,9 +24,9 @@ We wanted to create a website for customers to order/schedule professional dry-c
 This project is licensed under the MIT License.
 
 ## Contact
-Jaakob Alakulppi
-Adam Alfaro
-Maher AboulHosn
+- Jaakob Alakulppi
+- Adam Alfaro
+- Maher AboulHosn
 
 
 ## Active Website:
